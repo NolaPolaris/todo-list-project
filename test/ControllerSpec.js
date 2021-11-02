@@ -67,44 +67,37 @@ describe('controller', function () {
 		it('should show all entries without a route', function () {
 			var todo = {title: 'my todo'};
 			setUpModel([todo]);
-
 			subject.setView('');
-
 			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
 		});
 
 		it('should show all entries without "all" route', function () {
 			var todo = {title: 'my todo'};
 			setUpModel([todo]);
-
 			subject.setView('#/');
-
 			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
 		});
 
 		it('should show active entries', function () {
 			// TODO: write test
-			var todo1 = {title: 'my todo', active: false};
-			var todo2 = {title: 'my todo', active: true};
-			var todo3 = {title: 'my todo', completed: true};
-			var todos = [todo1, todo2, todo3] ;
-			setUpModel(todos);
-
+			var todo = {title: 'my todo', active:true};
+			setUpModel([todo]);
 			subject.setView('#/active');
-
-			expect(view.render).toHaveBeenCalledWith('showEntries', [todo1]);
+			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
 		});
 
 		it('should show completed entries', function () {
 			// TODO: write test
+			var todo = {title: 'my todo', completed:true};
+			setUpModel([todo]);
+			subject.setView('#/completed');
+			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
 		});
 	});
 
 	it('should show the content block when todos exists', function () {
 		setUpModel([{title: 'my todo', completed: true}]);
-
 		subject.setView('');
-
 		expect(view.render).toHaveBeenCalledWith('contentBlockVisibility', {
 			visible: true
 		});
@@ -143,7 +136,14 @@ describe('controller', function () {
 	});
 
 	it('should highlight "All" filter by default', function () {
-		// TODO: write test
+		// TODO: write test 
+		// var todo = [{id: 41, title: 'my todo 1', completed: false},
+		// 			{id: 42, title: 'my todo', completed: true}];
+		// setUpModel([todo]);
+
+		// subject.setView('');
+		// expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
+		
 	});
 
 	it('should highlight "Active" filter when switching to active view', function () {
