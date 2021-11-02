@@ -65,6 +65,7 @@
 		var self = this;
 		self.model.read(function (data) {
 			self.view.render('showEntries', data);
+			console.log(data)
 		});
 	};
 
@@ -75,6 +76,7 @@
 		var self = this;
 		self.model.read({ completed: false }, function (data) {
 			self.view.render('showEntries', data);
+			console.log(data)
 		});
 	};
 
@@ -85,6 +87,7 @@
 		var self = this;
 		self.model.read({ completed: true }, function (data) {
 			self.view.render('showEntries', data);
+			console.log(data)
 		});
 	};
 
