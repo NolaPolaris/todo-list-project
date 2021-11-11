@@ -60,6 +60,10 @@ describe('controller', function () {
 
 	it('should show entries on start-up', function () {
 		// TODO: write test
+		setUpModel([]);
+		subject.setView('');
+		expect(view.render).toHaveBeenCalledWith('showEntries', [])
+
 	});
 
 	describe('routing', function () {
@@ -167,16 +171,51 @@ describe('controller', function () {
 	describe('toggle all', function () {
 		it('should toggle all todos to completed', function () {
 			// TODO: write test
+			var todos = [{
+				id: 42,
+				title: 'my todo',
+				completed: false
+			}, {
+				id: 41,
+				title: 'another todo',
+				completed: false
+			}];
+
+			setUpModel(todos);
+			subject.setView('');
+
+			view.trigger('toggleAll', {completed: true});
+
+			expect(model.update).toHaveBeenCalledWith(42, {completed: true}, jasmine.any(Function));
+			expect(model.update).toHaveBeenCalledWith(41, {completed: true}, jasmine.any(Function));
 		});
 
 		it('should update the view', function () {
 			// TODO: write test
+			var todos = [{
+				id: 42,
+				title: 'my todo',
+				completed: true
+			}];
+
+			setUpModel(todos);
+			subject.setView('');
+
+			view.trigger('toggleAll', {completed: false});
+
+			expect(view.render).toHaveBeenCalledWith('elementComplete', {id: 42, completed: false});
 		});
 	});
 
 	describe('new todo', function () {
 		it('should add a new todo to the model', function () {
-			// TODO: write test
+			// TODO: write test -A VERIFIER
+			setUpModel([]);
+			subject.setView('');
+
+			view.trigger('newTodo', 'a new todo');
+
+			expect(model.create).toHaveBeenCalled();
 		});
 
 		it('should add a new todo to the view', function () {
@@ -217,6 +256,13 @@ describe('controller', function () {
 	describe('element removal', function () {
 		it('should remove an entry from the model', function () {
 			// TODO: write test
+			var todo = {id: 42, title: 'my todo', completed: true};
+			setUpModel([todo]);
+
+			subject.setView('');
+			view.trigger('itemRemove', {id: 42});
+
+			expect(model.remove).toHaveBeenCalledWith(42, jasmine.any(Function));
 		});
 
 		it('should remove an entry from the view', function () {
