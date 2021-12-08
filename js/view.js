@@ -43,6 +43,7 @@
 	View.prototype._setFilter = function (currentPage) {
 		qs('.filters .selected').className = '';
 		qs('.filters [href="#/' + currentPage + '"]').className = 'selected';
+		console.log(currentPage)
 	};
 
 	View.prototype._elementComplete = function (id, completed) {
