@@ -11,6 +11,8 @@
 	     *     Takes a todo application event and registers the handler
 	     *   - render(command, parameterObject)
 	     *     Renders the given command with the options
+		 * 
+		 * Nous construisons ici un modele de vue. La propriété "prototype" permet de lui ajouter des méthodes qui lui seront propres. On retrouve un fonctionnement très proche du concept de classe et de méthode. Dans tous les cas, on construit un object constitué de différentes particularités, propriétés, et méthodes qui permettent ainsi de le manipuler et de l'instancier tout au long du programme.
 	     */
 	function View(template) {
 		this.template = template;
