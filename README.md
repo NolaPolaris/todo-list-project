@@ -16,6 +16,3 @@ git clone https://github.com/NolaPolaris/todo-list-project
 cd /todo-list-project
 
 npm install
-
-npm test //run tests
-
